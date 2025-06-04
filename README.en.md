@@ -51,27 +51,27 @@ After launching **MTProxy**, you will receive the following details:
 
 ## Proxy Setup Instructions:
 
-For **`https://t.me/proxy?server=...`**:
+**For `https://t.me/proxy?server=...`**:
 1. Click the link or share it in any chat
 2. Telegram will prompt for connection confirmation
 3. Click «Connect»
 
-For **`tg://proxy?server=...`**:
+**For `tg://proxy?server=...`**:
 1. Copy the link and send it to «Saved Messages» or any chat
 2. Click the link
 3. Telegram will prompt for connection confirmation
 4. Click «Connect»
 
-For **Telegram Mobile**:  
+**For for manual input in Telegram (Mobile)**:  
 1. Go to `Settings` → `Data and Storage` → `Proxy Settings` at the bottom
 2. Select `Add Proxy` → Choose `MTProto Proxy`
-3. Enter your server IP, port, and secret
+3. Enter your server IP, external port, and secret
 4. Save and connect
 
-For **Telegram Desktop**:  
+**For for manual input in Telegram (Desktop)**:  
 1. Go to `Settings` → `Advanced` → `Connection Type` → `Use Custom Proxy`
 2. Select `Add Proxy` → Choose `MTProto Proxy`
-3. Enter your server IP, port, and secret
+3. Enter your server IP, external port, and secret
 4. Save and connect
 
 ## Management Commands
