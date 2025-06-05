@@ -1,7 +1,11 @@
 # Установка для Debian 10-12 или Ubuntu 20.04-24.04
 
 > [!TIP]
-> **Installation for Debian 10-12 or Ubuntu 20.04-24.04 → [ENGLISH README](https://github.com/Internet-Helper/MTProto-MTProxy-Telegram/blob/main/README.en.md)**
+> **Installation for Debian 10-12 or Ubuntu 20.04-24.04** → [ENGLISH README (click on me)](https://github.com/Internet-Helper/MTProto-MTProxy-Telegram/blob/main/README.en.md)
+
+> [!IMPORTANT] 
+> Данный материал подготовлен в научно-технических целях. Использование предоставленных материалов в целях отличных от ознакомления может являться нарушением действующего законодательства.  
+> Автор не несет ответственности за неправомерное использование данного материала!
 
 ***
 
@@ -10,8 +14,9 @@
 ***
 
 ## О MTProxy
-**MTProxy** — официальный прокси-сервер от Telegram, созданный на базе MTProto для доступа к Telegram в регионах с ограничениями в сети.  
-Официальный репозиторий [TelegramMessenger/MTProxy](https://github.com/TelegramMessenger/MTProxy) устарел и имеет проблемы при компиляции поэтому данный скрипт установки решает эти проблемы с улучшениями.
+**MTProxy** — официальный прокси-сервер от Telegram, созданный на базе MTProto.  
+Официальный репозиторий [TelegramMessenger/MTProxy](https://github.com/TelegramMessenger/MTProxy) устарел так как имеет проблемы при компиляции.  
+Этот скрипт создан с целью автоматизировать установку и устранить проблему совместимости для современных систем, предлагая ряд улучшений.
 
 ## Основные функции скрипта
 
