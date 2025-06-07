@@ -2,12 +2,48 @@
 
 # Script for Debian 10-12 and Ubuntu 20.04-24.04
 
-# Checking Strings for Unix Endings (LF) on Linux
+# Check and fix line endings (CRLF -> LF)
 if grep -q $'\r' "$0" 2>/dev/null; then
-    echo "Windows line endings detected, fixing..."
-    sed -i 's/\r$//' "$0"
-    echo "Restart with fixed line endings..."
-    exec bash "$0" "$@"
+    echo "Detected Windows line endings, fixing..."
+    # Create a backup of the original file
+    cp "$0" "${0}.bak" || { echo "Error: Failed to create backup of the script."; exit 1; }
+    # Attempt to fix with sed
+    if sed -i 's/\r$//' "$0" 2>/dev/null; then
+        echo "Fixed with sed, restarting..."
+        if ! exec bash "$0" "$@"; then
+            echo "Error: Failed to run script after sed fix."
+            # Restore original file
+            mv "${0}.bak" "$0" || { echo "Error: Failed to restore original file."; exit 1; }
+            # Install dos2unix
+            echo "Installing dos2unix..."
+            sudo apt update && sudo apt install -y dos2unix || { echo "Error: Failed to install dos2unix."; exit 1; }
+            # Fix with dos2unix
+            if dos2unix "$0" 2>/dev/null; then
+                echo "Fixed with dos2unix, restarting..."
+                exec bash "$0" "$@"
+            else
+                echo "Error: Failed to fix line endings with dos2unix."
+                mv "${0}.bak" "$0" || { echo "Error: Failed to restore original file."; exit 1; }
+                exit 1
+            fi
+        fi
+    else
+        echo "Error: Failed to fix line endings with sed."
+        # Restore original file
+        mv "${0}.bak" "$0" || { echo "Error: Failed to restore original file."; exit 1; }
+        # Install dos2unix
+        echo "Installing dos2unix..."
+        sudo apt update && sudo apt install -y dos2unix || { echo "Error: Failed to install dos2unix."; exit 1; }
+        # Fix with dos2unix
+        if dos2unix "$0" 2>/dev/null; then
+            echo "Fixed with dos2unix, restarting..."
+            exec bash "$0" "$@"
+        else
+            echo "Error: Failed to fix line endings with dos2unix."
+            mv "${0}.bak" "$0" || { echo "Error: Failed to restore original file."; exit 1; }
+            exit 1
+        fi
+    fi
 fi
 
 set -e
