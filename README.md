@@ -42,11 +42,17 @@
 # Загрузка скрипта
 wget -O install_mtproxy_russian.sh https://raw.githubusercontent.com/Internet-Helper/MTProto-MTProxy-Telegram/refs/heads/main/install_mtproxy_russian.sh
 
+# Установка dos2unix (если еще не установлен)
+sudo apt update && sudo apt install -y dos2unix
+
+# Исправление окончаний строк
+dos2unix install_mtproxy_russian.sh
+
 # Дать права на выполнение
 chmod +x install_mtproxy_russian.sh
 
 # Запустить скрипт
-sudo ./install_mtproxy_russian.sh
+sudo /bin/bash ./install_mtproxy_russian.sh
 ```
 
 После обновления и установки необходимых пакетов скрипт предложит выбрать вынешний и внутренний порт на ваше усмотрение:
