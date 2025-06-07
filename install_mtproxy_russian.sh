@@ -2,6 +2,14 @@
 
 # Скрипт для Debian 10-12 и Ubuntu 20.04-24.04
 
+# Проверка строк на Unix-окончания (LF) под Linux
+if grep -q $'\r' "$0" 2>/dev/null; then
+    echo "Обнаружены Windows-окончания строк, исправляем..."
+    sed -i 's/\r$//' "$0"
+    echo "Перезапуск с исправленными окончаниями строк..."
+    exec bash "$0" "$@"
+fi
+
 set -e
 
 # Цвета для вывода
@@ -256,7 +264,7 @@ sudo apt update -y && sudo apt upgrade -y
 # Установка зависимостей
 print_status "Установка зависимостей..."
 sudo apt install -y git build-essential libssl-dev zlib1g-dev curl wget \
-    libc6-dev gcc-multilib make cmake pkg-config netcat-openbsd xxd iproute2
+    libc6-dev gcc-multilib make cmake pkg-config netcat-openbsd xxd iproute2 dos2unix
 
 # Создание пользователя mtproxy для безопасного запуска сервиса
 print_status "Пользователь mtproxy (для безопасности)..."

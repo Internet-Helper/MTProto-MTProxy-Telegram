@@ -2,6 +2,14 @@
 
 # Script for Debian 10-12 and Ubuntu 20.04-24.04
 
+# Checking Strings for Unix Endings (LF) on Linux
+if grep -q $'\r' "$0" 2>/dev/null; then
+    echo "Windows line endings detected, fixing..."
+    sed -i 's/\r$//' "$0"
+    echo "Restart with fixed line endings..."
+    exec bash "$0" "$@"
+fi
+
 set -e
 
 # Colors for output
@@ -256,7 +264,7 @@ sudo apt update -y && sudo apt upgrade -y
 # Dependency Installation
 print_status "Installing dependencies..."
 sudo apt install -y git build-essential libssl-dev zlib1g-dev curl wget \
-    libc6-dev gcc-multilib make cmake pkg-config netcat-openbsd xxd iproute2
+    libc6-dev gcc-multilib make cmake pkg-config netcat-openbsd xxd iproute2 dos2unix
 
 # Creating mtproxy user for secure service execution
 print_status "mtproxy user (for security)..."
